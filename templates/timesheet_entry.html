@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>timesheet entry screen</title>
+    <link rel="stylesheet" href="../static/css/timesheet_entry_styles.css">
+</head>
+<body>
+    <h1>Retrive Work details</h1>
+    <form action="/timesheet_entry.html?from=timesheet_entry" method="POST">
+    <label for="emp_id">Employee ID: </label>
+    <input type="number" name="emp_id" id="emp_id">
+
+    <label for="from_date">FROM DATE: </label>
+    <input type="date" name="from_date" id="from_date">
+
+    <label for="to_date">TO DATE: </label>
+    <input type="date" name="to_date" id="to_date">
+    <br>
+    <button type="submit" >GET TIMESHEET</button>
+    </form>
+    <p>OUTPUT</p>
+    <div id="output">
+
+    </div>
+
+    {% if records %}
+    <h2>Timesheet for {{ ename }} ({{ from_date }} → {{ to_date }})</h2>
+    <table border="1">
+        <tr>
+            <th>Date</th>
+            <th>Worked Hours</th>
+            <th>Vacation?</th>
+        </tr>
+        {% for row in records %}
+        <tr>
+            <td>{{ row[1].strftime('%Y-%m-%d') }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+        <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+    
+    <h1>ADD WORK DETAILS</h1>
+    <form action="/home.html?from=timesheet_entry" method="POST">
+
+    <label for="eid">Employee id: </label>
+    <input type="number" name="eid" id="eid">
+
+    <label for="add_date">DATE: </label>
+    <input type="date" name="add_date" id="add_date">
+
+    <label for="work_hours">Work Hours</label>
+    <input type="number" name="work_hours" id="work_hours">
+
+    <button type="submit" >UPDATE</button>
+    </form>
+    
+    <form action="/employee_login_creation.html">
+    <button type="submit" >CREATE EMPLOYEE LOGIN</button>
+    </form>
+    <form action="/logout.html">
+    <button type="submit" >LOGOUT</button>
+    </form>
+
+    <script src="../static/js/timesheet_entry_script.js">
+    </script>
+</body>
+</html>
