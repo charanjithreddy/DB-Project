@@ -1,0 +1,143 @@
+/* General layout */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4fff4; /* soft green tint */
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Main headings */
+h1 {
+    color: #2e7d32;
+    background-color: #a5d6a7;
+    width: 75%;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+h2 {
+    color: #1b5e20;
+    margin-top: 20px;
+}
+
+/* Forms */
+form {
+    background-color: #ffffff;
+    border: 1px solid #c8e6c9;
+    border-radius: 10px;
+    padding: 20px;
+    width: 75%;
+    max-width: 800px;
+    margin-top: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+label {
+    font-weight: bold;
+    color: #2e7d32;
+    width: 120px;
+    text-align: right;
+}
+
+input[type="number"],
+input[type="date"] {
+    padding: 8px;
+    border: 1px solid #81c784;
+    border-radius: 5px;
+    width: 180px;
+}
+
+button {
+    background-color: #388e3c;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #2e7d32;
+}
+
+/* Output section */
+#output {
+    margin-top: 10px;
+    background-color: #ffffff;
+    width: 75%;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Table styling */
+table {
+    border-collapse: collapse;
+    width: 75%;
+    margin-top: 15px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #c8e6c9;
+}
+
+th {
+    background-color: #81c784;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f1f8e9;
+}
+
+/* Flash message styling */
+.flash {
+    margin-top: 15px;
+    width: 75%;
+    padding: 10px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.flash.info {
+    background-color: #fff9c4;
+    color: #827717;
+    border: 1px solid #fbc02d;
+}
+
+.flash.success {
+    background-color: #c8e6c9;
+    color: #1b5e20;
+    border: 1px solid #388e3c;
+}
+
+.flash.error {
+    background-color: #ffcdd2;
+    color: #b71c1c;
+    border: 1px solid #e53935;
+}
+
+/* Footer buttons */
+button[type="button"] {
+    margin: 15px;
+}
