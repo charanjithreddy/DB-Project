@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request,flash
 from routes.db_connect import db_connect
 
-timesheet_entry_bp=Blueprint("timesheet_entry_bp",_name_)
+timesheet_entry_bp=Blueprint("timesheet_entry_bp",__name__)
 
 @timesheet_entry_bp.route("/timesheet_entry.html",methods=['POST','GET'])
 def entry():

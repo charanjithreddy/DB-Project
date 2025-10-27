@@ -2,7 +2,7 @@ from flask import Blueprint,render_template, request,flash,session
 from models.user_credentials import user_credentials
 from routes.login_validate import login_validate
 
-password_reset_succes_bp=Blueprint("password_reset_success_bp",_name_)
+password_reset_succes_bp=Blueprint("password_reset_success_bp",__name__)
 
 @password_reset_succes_bp.route("/password_reset_success.html",methods=['POST','GET'])
 def successful_pwd_reset():

@@ -3,7 +3,7 @@ from routes.db_connect import db_connect
 from routes.login_validate import login_validate
 from models.user_credentials import user_credentials
 
-home_bp=Blueprint("home_bp",_name_)
+home_bp=Blueprint("home_bp",__name__)
 
 @home_bp.route("/home.html",methods=['POST','GET'])
 def login():

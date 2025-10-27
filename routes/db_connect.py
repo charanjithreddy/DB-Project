@@ -4,9 +4,9 @@ class db_connect():
     def get_connection(self):
         db_config = {
             'host': 'localhost',
-            'user': 'root',         # replace with your MySQL username
-            'password': 'Babulal007$', # replace with your MySQL password
-            'database': 'flask_app'
+            'user': 'yourusername', 
+            'password': 'yourpassword', 
+            'database': 'dbms_project'
         }
         try:
             # Connect to MySQL
