@@ -12,7 +12,7 @@ from routes.timesheet_entry_routes import timesheet_entry_bp
 from routes.employee_login_creation_routes import employee_login_creation_bp
 from routes.password_reset_route import password_reset_bp
 from routes.logout_routes import logout_bp
-from routes.password_reset_success_routes import password_reset_succes_bp
+from routes.password_reset_success_route import password_reset_succes_bp
 
 app.register_blueprint(index_bp)
 app.register_blueprint(login_bp)
