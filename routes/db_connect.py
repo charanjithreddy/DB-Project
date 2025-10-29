@@ -4,8 +4,8 @@ class db_connect():
     def get_connection(self):
         db_config = {
             'host': 'localhost',
-            'user': 'yourusername', 
-            'password': 'yourpassword', 
+            'user': 'root', 
+            'password': 'Babulal007$', 
             'database': 'dbms_project'
         }
         try:
