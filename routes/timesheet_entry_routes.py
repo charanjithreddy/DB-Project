@@ -19,7 +19,13 @@ def retrieve_timesheet():
         to_date=request.form.get('to_date');
         connection=db_connect().get_connection();
         cursor=connection.cursor();
-        query=" SELECT e.EMPLOYEE_NAME, t.TS_DATE, t.WORKED_HOURS, t.IS_VACATION_Y_N FROM EMP_TIMESHEET t JOIN EMPLOYEE e ON t.EMPLOYEE_ID = e.ID WHERE e.EMPLOYEE_ID = %s AND t.TS_DATE BETWEEN %s AND %s ORDER BY t.TS_DATE"
+        query = """
+        SELECT e.EMPLOYEE_NAME, t.TS_DATE, t.WORKED_HOURS, t.IS_VACATION_Y_N 
+        FROM EMP_TIMESHEET t 
+        JOIN EMPLOYEE e ON t.EMPLOYEE_ID = e.EMPLOYEE_ID 
+        WHERE e.EMPLOYEE_ID = %s AND t.TS_DATE BETWEEN %s AND %s 
+        ORDER BY t.TS_DATE
+        """
         values=(emp_id, from_date, to_date)
         cursor.execute(query,values)
         records=cursor.fetchall();
