@@ -25,8 +25,6 @@ def home_after_timesheet_entry():
         work_hours=request.form.get('work_hours')
         connection=db_connect().get_connection();
         cursor=connection.cursor();
-        
-
         query="SELECT EMPLOYEE_ID FROM EMPLOYEE WHERE EMPLOYEE_ID="+str(eid);
         cursor.execute(query);
         print(query);
@@ -79,24 +77,44 @@ def home_after_employee_login_creation():
         dept=request.form.get('dept')
         join_date=request.form.get('join_date')
         connection=db_connect().get_connection();
-        cursor1=connection.cursor();
-        query1="insert into employee(EMPLOYEE_ID,EMPLOYEE_NAME,DEPT_NAME,JOINING_DATE,CREATED_USERID) values(%s,%s,%s,%s,%s)"
-        values1=(emp_id,emp_name,dept,join_date,session['user_id']);
 
-        print(' session user id ',session['user_id']);
-        print('curbefore fist',values1);
+        cursor=connection.cursor();
+        query="SELECT EMPLOYEE_ID FROM EMPLOYEE WHERE EMPLOYEE_ID="+str(emp_id);
+        cursor.execute(query);
+        print(query);
+        print(cursor.rowcount);
+        result=cursor.fetchone();
+        if(result):
+            flash("Duplicate entry for employee Id. Employee Id already exists");
+            db_connect().close_connection(connection)
+            return render_template("employee_login_creation.html");
+        else:
+            cursor.execute("SELECT MAX(ID) FROM EMPLOYEE")
+            max_id = cursor.fetchone()[0]
+            new_emp_id = (max_id or 0) + 1  # next ID manually
 
-        cursor1.execute(query1,values1)
-        cursor2=connection.cursor();
-        query2="insert into USER_CREDENTIALS(EMAIL_ID,PASSWORD,IS_ADMIN_Y_N,CREATED_USERID) values(%s,%s,%s,%s)"
-        values2=(mail,emp_id,'N',session['user_id'])
-        print('curbefore second ',values2);
+            query1 = """
+            INSERT INTO employee(ID, EMPLOYEE_ID, EMPLOYEE_NAME, DEPT_NAME, JOINING_DATE, CREATED_USERID)
+            VALUES (%s, %s, %s, %s, %s, %s)
+            """
+            values1 = (new_emp_id, emp_id, emp_name, dept, join_date, session['user_id'])
+            cursor.execute(query1, values1)
 
-        cursor2.execute(query2,values2)
-        connection.commit()
+            query2 = """
+            INSERT INTO USER_CREDENTIALS(ID, EMAIL_ID, PASSWORD, IS_ADMIN_Y_N, CREATED_USERID)
+            VALUES (%s, %s, %s, %s, %s)
+            """
+            values2 = (new_emp_id, mail, emp_id, 'N', session['user_id'])
+            cursor2=connection.cursor();
+            cursor2.execute(query2, values2)
+            connection.commit()
 
-        db_connect().close_connection(connection)
-        return render_template("home.html")
+            db_connect().close_connection(connection)
+            return render_template("home.html")
+        
     else:
-        print("Wrong method for home from emp login crtion")
+        print("Wrong method for home from emp login creation")
         return render_template("employee_login_creation.html")
+
+
+
