@@ -1,4 +1,4 @@
-/* General page setup */
+/* 🌿 General Page Setup */
 body {
     margin: 0;
     padding: 0;
@@ -10,20 +10,33 @@ body {
     justify-content: center;
 }
 
-/* Form card container */
-form {
+/* 🧩 Wrapper Layout */
+.page-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    width: 75%;
+    height: 80%;
+}
+
+/* 📝 Left Section: Employee Form */
+.left-section {
+    flex: 2;
+}
+
+.left-section form {
     background: #ffffff;
     border-radius: 20px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     padding: 40px 50px;
-    width: 400px;
     display: flex;
     flex-direction: column;
     gap: 15px;
     animation: fadeIn 0.8s ease-in-out;
 }
 
-/* Labels and inputs */
+/* 🧾 Labels & Inputs */
 label {
     font-size: 14px;
     color: #333;
@@ -44,7 +57,7 @@ input:focus {
     box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
 
-/* Buttons */
+/* 💾 Buttons */
 button {
     padding: 12px;
     border: none;
@@ -63,30 +76,47 @@ button:hover {
     box-shadow: 0 6px 15px rgba(0,0,0,0.2);
 }
 
-/* Subtle fade-in animation */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-/* Wrapper for the page content */
-.page-wrapper {
+/* 📦 Right Section: Navigation Buttons */
+.right-section {
+    flex: 1;
     display: flex;
-    width: 75%;          /* takes 75% of page width */
-    height: 70%;         /* optional, adjust as needed */
-    gap: 30px;           /* space between left and right sections */
-    align-items: flex-start; /* aligns items at top */
+    flex-direction: column;
+    gap: 20px;
+}
+
+.right-section form {
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 25px 30px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    display: flex;
     justify-content: center;
 }
 
-/* Left section: first form */
-.left-section {
-    flex: 1;             /* takes half or proportional width */
+/* 🔔 Flash Messages */
+.flash {
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    text-align: center;
+    font-weight: 500;
 }
 
-/* Right section: two buttons stacked vertically */
-.right-section {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;           /* space between two buttons */
-    justify-content: flex-start;
+.flash.info {
+    background: #e0f7e9;
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
+}
+
+.flash.error {
+    background: #ffebee;
+    color: #c62828;
+    border: 1px solid #ef9a9a;
+}
+
+/* ✨ Subtle Fade-in Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
